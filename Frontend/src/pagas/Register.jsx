@@ -1,4 +1,4 @@
-import { loginUser } from "../app/actions/user";
+import { registerUser } from "../app/actions/user"
 import {
     Button,
     Center,
@@ -12,22 +12,22 @@ import {
     Text
   } from "@chakra-ui/react"
   import React, { useState } from "react"
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 
-  const Login = () => {
+  const Register = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-  const { user, loading, error } = useSelector((state) => state.user);
+        const dispatch = useDispatch();
+      const { user, loading, error } = useSelector((state) => state.user);
 
-
-  
-  
+      console.log(error ,user);
+      
     const [data,setData] = useState({
+      name : "",
       email : "",
       password : ""
     })
-   
+    // console.log(data);
     
 const handelChange = (e)=>{
 const {name,value} = e.target
@@ -35,36 +35,38 @@ setData({...data, [name] : value})
 }
 
 const handelSubmit = async()=>{
-  const result = await dispatch(loginUser(data)); // Dispatch login action
-    console.log(result);
-    
-  if (result.payload?.accessToken) {
-
-      localStorage.setItem("user", JSON.stringify({ name : result.payload?.name  ,token : result.payload?.accessToken})); 
-
-      // Clear form data
-      setData({
-        email: "",
-        password: "",
-      });
-
-      // Navigate to home page
-      navigate("/");
-    }
+  const result = await dispatch(registerUser(data)); 
+      console.log(result);
+      
+    if (result.payload?.newUser) {
   
+        // Clear form data
+        setData({
+          email: "",
+          password: "",
+        });
+  
+        // Navigate to singin page
+        navigate("/singin");
+      }
 }
     return (
     <Center py={5}>
       <Fieldset.Root  size="lg" maxW="md">
         <Stack>
-          <Fieldset.Legend>Login Now</Fieldset.Legend>
+          <Fieldset.Legend>Register Now</Fieldset.Legend>
           <Fieldset.HelperText>
             Please provide your details below.
           </Fieldset.HelperText>
         </Stack>
-        {error && <Text size={"sm"} color="red.500">{error?.message}</Text>}
-        {user && <p>Welcome, {user.name}!</p>}
+   {error && <Text size={"sm"} color="red.500">{error?.errors?.[0] || error?.massage}</Text>}
+          {user && <p>Welcome, {user.name}!</p>}
         <Fieldset.Content >
+          <Field.Root>
+            <Field.Label>Name</Field.Label>
+            <Input value={data.name} onChange={handelChange} name="name" />
+          </Field.Root>
+  
           <Field.Root>
             <Field.Label>Email address</Field.Label>
             <Input value={data.email} onChange={handelChange} name="email" type="email" />
@@ -77,13 +79,13 @@ const handelSubmit = async()=>{
         </Fieldset.Content>
   
         <Button onClick={handelSubmit} type="submit" alignSelf="flex-start">
-          SingIn
+          SingUp
         </Button>
         <HStack>
         <Fieldset.HelperText>
-            If you dontn't have a account , you can
+            If you already have a account , you can
           </Fieldset.HelperText>
-          <Text _hover={{textDecoration : "underline"}}><Link  to={"/singup"}>SingUp</Link></Text>
+          <Text _hover={{textDecoration : "underline"}}><Link  to={"/singin"}>SingIn</Link></Text>
         </HStack>
         
       </Fieldset.Root>
@@ -91,5 +93,5 @@ const handelSubmit = async()=>{
     )
   }
 
-  export default Login
+  export default Register
   

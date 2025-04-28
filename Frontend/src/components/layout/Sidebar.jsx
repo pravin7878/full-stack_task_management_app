@@ -6,6 +6,7 @@ import { MdAddTask, MdOutlineDashboardCustomize } from 'react-icons/md';
 import { AiOutlineTeam } from 'react-icons/ai';
 import { TbBrandGoogleAnalytics } from 'react-icons/tb';
 import { useColorMode } from '../ui/color-mode';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
 const {colorMode} = useColorMode()
@@ -14,7 +15,7 @@ const {colorMode} = useColorMode()
     const navItems = [
         // { label: 'Dashboard', icon: <MdOutlineDashboardCustomize /> },
         // { label: 'Team', icon: <AiOutlineTeam /> },
-        { label: 'All Tasks', icon: <MdAddTask /> },
+        { label: 'All Tasks', icon: <MdAddTask /> ,path : "/" },
         // { label: 'Analytics', icon: <TbBrandGoogleAnalytics /> },
     ]
 
@@ -44,7 +45,8 @@ const {colorMode} = useColorMode()
 
             <VStack align={"start"} px={[5]}>
                 {navItems?.map((item, ind) => {
-                    return <HStack
+                    return <Link to={item.path}>
+                    <HStack
                     key={ind}
                         w={"full"}
                         cursor={"pointer"}
@@ -55,6 +57,7 @@ const {colorMode} = useColorMode()
                         <Icon>{item?.icon}</Icon>
                         <Text>{item?.label}</Text>
                     </HStack>
+                    </Link>
                 })}
             </VStack>
 

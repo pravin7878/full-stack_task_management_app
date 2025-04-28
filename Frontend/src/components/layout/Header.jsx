@@ -10,6 +10,7 @@ import { SideBarDrawer } from "../ui/Drawer";
 import Sidebar from "./Sidebar";
 import logo from "../../assets/logo_deshboard.png"
 import { MdAddTask } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 const [isSerchActive, setIsSerchActive]= useState(false)
@@ -84,7 +85,11 @@ const [isLogged, setIsLogged] = useState(false)
                     <Avatar.Fallback />
                 </Avatar.Root>
                 :
-                <Button size={"md"}>SingIn</Button>
+                <Link to={"/singin"}>
+                <Button size={"md"}>
+                    SingIn
+                </Button>
+                </Link>
                 }
 
             </HStack>

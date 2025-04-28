@@ -5,6 +5,9 @@ import Dashboard from './pagas/Dashboard'
 import { Container } from '@chakra-ui/react'
 import { Route, Routes } from 'react-router-dom';
 import Login from './pagas/Login';
+import Register from './pagas/Register';
+import PrivateRoute from './components/custom/PrivateRoute';
+import AddNewTask from './pagas/AddNewTask';
 
 function App() {
 
@@ -12,10 +15,15 @@ function App() {
     <>
       <Container>
           <Layout>
-            {/* <Dashboard/> */}
             <Routes>
-              <Route path='/' element={""}/>
+              <Route path='/' element={<PrivateRoute>
+                <Dashboard/>
+              </PrivateRoute>}/>
+              <Route path='/task/add' element={<PrivateRoute>
+                <AddNewTask/>
+              </PrivateRoute>}/>
               <Route path='/singin' element={<Login/>}/>
+              <Route path='/singup' element={<Register/>}/>
             </Routes>
           </Layout>
       </Container>

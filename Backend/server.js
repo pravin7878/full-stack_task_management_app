@@ -7,6 +7,7 @@ const todoRouter = require("./src/routes/todo.routes");
 const app = express()
 const port = process.env.PORT || 3000
 
+app.use(cors());
 
 app.get("/" , (req,res)=>{
     res.send("wellcome to server")

@@ -10,7 +10,7 @@ const Layout = ({children}) => {
       <Box hideBelow={"md"} shadow={"md"} h={"full"} w={{md:"30%",lg:"20%"}}>
         <Sidebar />
       </Box>
-      <Box w={"full"} border={"solid 2px red"}>
+      <Box w={"full"}>
         <Header/>
        <Box
        p={5}
