@@ -21,7 +21,7 @@ Built with modern technologies on both the frontend and backend.
 
 **Frontend**:
 - React.js
-- Redux / Context API (for state management)
+- Redux (for state management)
 - Tailwind CSS / Chakra UI / Custom CSS
 - Axios (for API calls)
 
@@ -34,48 +34,50 @@ Built with modern technologies on both the frontend and backend.
 
 **Other Tools**:
 - Postman (for API testing)
-- Vercel / Netlify (Frontend Deployment)
-- Render / Railway / AWS (Backend Deployment)
 - Git & GitHub (Version Control)
 
 ---
 
-## 📂 Folder Structure
-
-
----
 
 ## 📦 Setup and Installation
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/task-management-app.git
-cd task-management-app
+git clone https://github.com/pravin7878/full-stack_task_management_app.git
 ```
+
 ### 2. Setup the Backend
 ```
-cd server
+cd Backend
 npm install
-npm run dev
+npm start
 ```
 Backend will run on http://localhost:8080
 
 ### 3. Setup the Frontend
 ``` 
-cd client
+cd Frontend
 npm install
-npm run start
+npm run dev
 ```
 Frontend will run on http://localhost:5173
 
 ### 🔒 Environment Variables
-Create a .env file in the /server directory and add:
+- **For Frontend**
+Create a .env file in the Frontend directory and add:
 ```
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
-PORT=5000
+VITE_BACKEND_URI=http://localhost:8080
 ```
+
+- **For Backend**
+Create a .env file in the Frontend directory and add:
+```
+PORT = 8080
+MONGO_URI = <your_mongodb_connection_string>/task_manager
+JWT_SECRET_KEY = todo1234
+```
+
 
 ## 📚 API Endpoints Overview
 
