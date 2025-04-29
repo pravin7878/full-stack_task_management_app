@@ -45,9 +45,9 @@ const {colorMode} = useColorMode()
 
             <VStack align={"start"} px={[5]}>
                 {navItems?.map((item, ind) => {
-                    return <Link to={item.path}>
+                    return <Link key={ind} to={item.path}>
                     <HStack
-                    key={ind}
+                    
                         w={"full"}
                         cursor={"pointer"}
                         _hover={{ bg: colorMode === "dark" ? "gray.700" : "gray.300" }}
