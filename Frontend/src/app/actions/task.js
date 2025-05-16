@@ -1,11 +1,24 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
 const BACKEND_URI = import.meta.env.VITE_BACKEND_URI;
-const {token} = JSON.parse(localStorage.getItem('user'))
+
+
+function getToken() {
+  const user = localStorage.getItem('user');
+  if (!user) return null;
+  try {
+    return JSON.parse(user).token;
+  } catch {
+    return null;
+  }
+}
+
+
+
 // Fetch tasks
 export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async (_, { rejectWithValue }) => {
   try {
+    const token = getToken();
     const response = await axios.get(`${BACKEND_URI}/tasks`, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -18,6 +31,7 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async (_, { rejec
 // Add a new task
 export const addTask = createAsyncThunk('tasks/addTask', async (taskData, { rejectWithValue }) => {
   try {
+    const token = getToken();
     const response = await axios.post(`${BACKEND_URI}/tasks`, taskData, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -30,6 +44,7 @@ export const addTask = createAsyncThunk('tasks/addTask', async (taskData, { reje
 // Update a task
 export const updateTask = createAsyncThunk('tasks/updateTask', async ({ taskId, taskData }, { rejectWithValue }) => {
   try {
+    const token = getToken();
     const response = await axios.patch(`${BACKEND_URI}/tasks/${taskId}`, taskData, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -42,6 +57,7 @@ export const updateTask = createAsyncThunk('tasks/updateTask', async ({ taskId, 
 // Delete a task
 export const deleteTask = createAsyncThunk('tasks/deleteTask', async (taskId, { rejectWithValue }) => {
   try {
+    const token = getToken();
     const response = await axios.delete(`${BACKEND_URI}/tasks/${taskId}`, {
       headers: { Authorization: `Bearer ${token}` },
     });

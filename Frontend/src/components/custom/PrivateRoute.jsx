@@ -4,11 +4,11 @@ import { Navigate } from "react-router-dom";
 
 const PrivateRoute = ({ children }) => {
   
-  const {token} = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  if (!token) {
+  if (!user || !user.token) {
     // If no token, redirect to login page
-    return <Navigate to="/login" />;
+    return <Navigate to="/singin" />;
   }
 
   // If authenticated, render the child component
