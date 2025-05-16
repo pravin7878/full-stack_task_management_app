@@ -7,7 +7,7 @@ Built with modern technologies on both the frontend and backend.
 
 ## 🚀 Features
 
-- ✅ User Authentication (Register/Login/Logout)
+- ✅ User Authentication (Register/Login/Logout) (with private routing)
 - ✅ Create, Read, Update, and Delete (CRUD) tasks
 - ✅ Mark tasks as **Completed** or **Pending**
 - ✅ Filter tasks based on status
