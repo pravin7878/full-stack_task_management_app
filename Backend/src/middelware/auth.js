@@ -24,7 +24,7 @@ const auth = async (req, res, next) => {
         .status(401)
         .json({ message: "Token is missing after 'Bearer'" });
     }
-
+// console.log(token);
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     req.user = decoded; 
     next();
